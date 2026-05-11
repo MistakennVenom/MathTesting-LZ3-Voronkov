@@ -1,0 +1,77 @@
+{
+  "id": "e44c20bc-6712-42da-91bb-bc99d989f6fc",
+  "version": "2.0",
+  "name": "QALab3_Variant4",
+  "url": "https://pn.com.ua",
+  "tests": [
+    {
+      "id": "test-1",
+      "name": "1_01_Keywords",
+      "commands": [
+        { "id": "c11", "command": "open", "target": "/ct/1047/", "targets": [], "value": "" },
+        { "id": "c12", "command": "assertElementPresent", "target": "xpath=//*[contains(text(), 'Холодильники') or contains(text(), 'холодильники')]", "targets": [], "value": "" },
+        { "id": "c13", "command": "assertElementPresent", "target": "xpath=//*[contains(text(), 'Ціна') or contains(text(), 'Цена')]", "targets": [], "value": "" }
+      ]
+    },
+    {
+      "id": "test-2",
+      "name": "1_02_Ukrainian",
+      "commands": [
+        { "id": "c21", "command": "open", "target": "/ct/1047/", "targets": [], "value": "" },
+        { "id": "c22", "command": "click", "target": "xpath=//a[contains(text(), 'Укр') or contains(text(), 'UA')]", "targets": [], "value": "" },
+        { "id": "c23", "command": "assertElementPresent", "target": "xpath=//*[contains(text(), 'Каталог')]", "targets": [], "value": "" }
+      ]
+    },
+    {
+      "id": "test-3",
+      "name": "1_03_FirstPage",
+      "commands": [
+        { "id": "c31", "command": "open", "target": "/ct/1047/", "targets": [], "value": "" },
+        { "id": "c32", "command": "executeScript", "target": "return window.location.href.includes('page=')", "targets": [], "value": "isNotFirst" },
+        { "id": "c33", "command": "assert", "target": "isNotFirst", "targets": [], "value": "false" }
+      ]
+    },
+    {
+      "id": "test-4",
+      "name": "1_04_ReturnHome",
+      "commands": [
+        { "id": "c41", "command": "open", "target": "/ct/1047/", "targets": [], "value": "" },
+        { "id": "c42", "command": "click", "target": "xpath=//a[contains(text(), 'Головна') or contains(text(), 'Главная') or @class='logo']", "targets": [], "value": "" },
+        { "id": "c43", "command": "executeScript", "target": "return window.location.pathname", "targets": [], "value": "path" },
+        { "id": "c44", "command": "assert", "target": "path", "targets": [], "value": "/" }
+      ]
+    },
+    {
+      "id": "test-5",
+      "name": "1_05_Search",
+      "commands": [
+        { "id": "c51", "command": "open", "target": "/", "targets": [], "value": "" },
+        { "id": "c52", "command": "type", "target": "xpath=//input[@type='text' or @name='fn']", "targets": [], "value": "холодильник" },
+        { "id": "c53", "command": "click", "target": "xpath=//input[@type='submit' or @type='button']", "targets": [], "value": "" },
+        { "id": "c54", "command": "assertElementPresent", "target": "xpath=//*[contains(text(), 'Холодильник') or contains(text(), 'холодильник')]", "targets": [], "value": "" }
+      ]
+    },
+    {
+      "id": "test-6",
+      "name": "1_06_NegativeSearch",
+      "commands": [
+        { "id": "c61", "command": "open", "target": "/", "targets": [], "value": "" },
+        { "id": "c62", "command": "type", "target": "xpath=//input[@type='text' or @name='fn']", "targets": [], "value": "ноутбук" },
+        { "id": "c63", "command": "click", "target": "xpath=//input[@type='submit' or @type='button']", "targets": [], "value": "" },
+        { "id": "c64", "command": "assertElementNotPresent", "target": "xpath=//h1[contains(text(), 'Холодильник') or contains(text(), 'холодильник')]", "targets": [], "value": "" }
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "suite-1",
+      "name": "Main Suite",
+      "persistSession": false,
+      "parallel": false,
+      "timeout": 300,
+      "tests": ["test-1", "test-2", "test-3", "test-4", "test-5", "test-6"]
+    }
+  ],
+  "urls": ["https://pn.com.ua/"],
+  "plugins": []
+}
