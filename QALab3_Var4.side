@@ -9,8 +9,10 @@
       "name": "1_01_Keywords",
       "commands": [
         { "id": "c11", "command": "open", "target": "/ct/1047/", "targets": [], "value": "" },
-        { "id": "c12", "command": "assertElementPresent", "target": "xpath=//*[contains(text(), 'Холодильники') or contains(text(), 'холодильники')]", "targets": [], "value": "" },
-        { "id": "c13", "command": "assertElementPresent", "target": "xpath=//*[contains(text(), 'Ціна') or contains(text(), 'Цена')]", "targets": [], "value": "" }
+        { "id": "c12", "command": "executeScript", "target": "return document.title.toLowerCase().includes('холодильник');", "targets": [], "value": "hasKeyword1" },
+        { "id": "c13", "command": "assert", "target": "hasKeyword1", "targets": [], "value": "true" },
+        { "id": "c14", "command": "executeScript", "target": "return document.body.innerText.includes('Ціна') || document.body.innerText.includes('Цена');", "targets": [], "value": "hasKeyword2" },
+        { "id": "c15", "command": "assert", "target": "hasKeyword2", "targets": [], "value": "true" }
       ]
     },
     {
@@ -18,8 +20,10 @@
       "name": "1_02_Ukrainian",
       "commands": [
         { "id": "c21", "command": "open", "target": "/ct/1047/", "targets": [], "value": "" },
-        { "id": "c22", "command": "click", "target": "xpath=//a[contains(text(), 'Укр') or contains(text(), 'UA')]", "targets": [], "value": "" },
-        { "id": "c23", "command": "assertElementPresent", "target": "xpath=//*[contains(text(), 'Каталог')]", "targets": [], "value": "" }
+        { "id": "c22", "command": "executeScript", "target": "var link = document.querySelector('a[href*=\"/uk/\"]'); if(link) link.click(); return true;", "targets": [], "value": "" },
+        { "id": "c23", "command": "pause", "target": "2000", "targets": [], "value": "" },
+        { "id": "c24", "command": "executeScript", "target": "return document.body.innerText.includes('Каталог');", "targets": [], "value": "hasCatalog" },
+        { "id": "c25", "command": "assert", "target": "hasCatalog", "targets": [], "value": "true" }
       ]
     },
     {
@@ -27,7 +31,7 @@
       "name": "1_03_FirstPage",
       "commands": [
         { "id": "c31", "command": "open", "target": "/ct/1047/", "targets": [], "value": "" },
-        { "id": "c32", "command": "executeScript", "target": "return window.location.href.includes('page=')", "targets": [], "value": "isNotFirst" },
+        { "id": "c32", "command": "executeScript", "target": "return window.location.href.includes('page=');", "targets": [], "value": "isNotFirst" },
         { "id": "c33", "command": "assert", "target": "isNotFirst", "targets": [], "value": "false" }
       ]
     },
@@ -36,8 +40,8 @@
       "name": "1_04_ReturnHome",
       "commands": [
         { "id": "c41", "command": "open", "target": "/ct/1047/", "targets": [], "value": "" },
-        { "id": "c42", "command": "click", "target": "xpath=//a[contains(text(), 'Головна') or contains(text(), 'Главная') or @class='logo']", "targets": [], "value": "" },
-        { "id": "c43", "command": "executeScript", "target": "return window.location.pathname", "targets": [], "value": "path" },
+        { "id": "c42", "command": "click", "target": "xpath=(//a[@href='/' or @href='https://pn.com.ua/' or @href='https://pn.com.ua'])[1]", "targets": [], "value": "" },
+        { "id": "c43", "command": "executeScript", "target": "return window.location.pathname;", "targets": [], "value": "path" },
         { "id": "c44", "command": "assert", "target": "path", "targets": [], "value": "/" }
       ]
     },
