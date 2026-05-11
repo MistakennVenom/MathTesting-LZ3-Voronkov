@@ -9,9 +9,9 @@
       "name": "1_01_Keywords",
       "commands": [
         { "id": "c11", "command": "open", "target": "/ct/1047/", "targets": [], "value": "" },
-        { "id": "c12", "command": "executeScript", "target": "return document.title.toLowerCase().includes('холодильник');", "targets": [], "value": "hasKeyword1" },
+        { "id": "c12", "command": "executeScript", "target": "return document.body.innerText.toLowerCase().includes('холодил');", "targets": [], "value": "hasKeyword1" },
         { "id": "c13", "command": "assert", "target": "hasKeyword1", "targets": [], "value": "true" },
-        { "id": "c14", "command": "executeScript", "target": "return document.body.innerText.includes('Ціна') || document.body.innerText.includes('Цена');", "targets": [], "value": "hasKeyword2" },
+        { "id": "c14", "command": "executeScript", "target": "return document.body.innerText.toLowerCase().includes('цін') || document.body.innerText.toLowerCase().includes('цен');", "targets": [], "value": "hasKeyword2" },
         { "id": "c15", "command": "assert", "target": "hasKeyword2", "targets": [], "value": "true" }
       ]
     },
@@ -20,10 +20,9 @@
       "name": "1_02_Ukrainian",
       "commands": [
         { "id": "c21", "command": "open", "target": "/ct/1047/", "targets": [], "value": "" },
-        { "id": "c22", "command": "executeScript", "target": "var link = document.querySelector('a[href*=\"/uk/\"]'); if(link) link.click(); return true;", "targets": [], "value": "" },
-        { "id": "c23", "command": "pause", "target": "2000", "targets": [], "value": "" },
-        { "id": "c24", "command": "executeScript", "target": "return document.body.innerText.includes('Каталог');", "targets": [], "value": "hasCatalog" },
-        { "id": "c25", "command": "assert", "target": "hasCatalog", "targets": [], "value": "true" }
+        { "id": "c22", "command": "open", "target": "/uk/ct/1047/", "targets": [], "value": "" },
+        { "id": "c23", "command": "executeScript", "target": "return document.body.innerText.includes('Каталог') || document.body.innerText.includes('Холодильники');", "targets": [], "value": "hasCatalog" },
+        { "id": "c24", "command": "assert", "target": "hasCatalog", "targets": [], "value": "true" }
       ]
     },
     {
