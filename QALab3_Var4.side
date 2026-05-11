@@ -9,9 +9,10 @@
       "name": "1_01_Keywords",
       "commands": [
         { "id": "c11", "command": "open", "target": "/ct/1047/", "targets": [], "value": "" },
-        { "id": "c12", "command": "executeScript", "target": "return document.body.innerText.toLowerCase().includes('холодил');", "targets": [], "value": "hasKeyword1" },
+        { "id": "p1", "command": "pause", "target": "3000", "targets": [], "value": "" },
+        { "id": "c12", "command": "executeScript", "target": "return document.body.innerText.toLowerCase().includes('холодил') ? 'true' : 'false';", "targets": [], "value": "hasKeyword1" },
         { "id": "c13", "command": "assert", "target": "hasKeyword1", "targets": [], "value": "true" },
-        { "id": "c14", "command": "executeScript", "target": "return document.body.innerText.toLowerCase().includes('цін') || document.body.innerText.toLowerCase().includes('цен');", "targets": [], "value": "hasKeyword2" },
+        { "id": "c14", "command": "executeScript", "target": "return (document.body.innerText.toLowerCase().includes('цін') || document.body.innerText.toLowerCase().includes('цен')) ? 'true' : 'false';", "targets": [], "value": "hasKeyword2" },
         { "id": "c15", "command": "assert", "target": "hasKeyword2", "targets": [], "value": "true" }
       ]
     },
@@ -20,8 +21,10 @@
       "name": "1_02_Ukrainian",
       "commands": [
         { "id": "c21", "command": "open", "target": "/ct/1047/", "targets": [], "value": "" },
+        { "id": "p2", "command": "pause", "target": "2000", "targets": [], "value": "" },
         { "id": "c22", "command": "open", "target": "/uk/ct/1047/", "targets": [], "value": "" },
-        { "id": "c23", "command": "executeScript", "target": "return document.body.innerText.includes('Каталог') || document.body.innerText.includes('Холодильники');", "targets": [], "value": "hasCatalog" },
+        { "id": "p3", "command": "pause", "target": "3000", "targets": [], "value": "" },
+        { "id": "c23", "command": "executeScript", "target": "return (document.body.innerText.includes('Каталог') || document.body.innerText.includes('Холодильники')) ? 'true' : 'false';", "targets": [], "value": "hasCatalog" },
         { "id": "c24", "command": "assert", "target": "hasCatalog", "targets": [], "value": "true" }
       ]
     },
@@ -51,6 +54,7 @@
         { "id": "c51", "command": "open", "target": "/", "targets": [], "value": "" },
         { "id": "c52", "command": "type", "target": "xpath=//input[@type='text' or @name='fn']", "targets": [], "value": "холодильник" },
         { "id": "c53", "command": "click", "target": "xpath=//input[@type='submit' or @type='button']", "targets": [], "value": "" },
+        { "id": "p4", "command": "pause", "target": "2000", "targets": [], "value": "" },
         { "id": "c54", "command": "assertElementPresent", "target": "xpath=//*[contains(text(), 'Холодильник') or contains(text(), 'холодильник')]", "targets": [], "value": "" }
       ]
     },
@@ -61,6 +65,7 @@
         { "id": "c61", "command": "open", "target": "/", "targets": [], "value": "" },
         { "id": "c62", "command": "type", "target": "xpath=//input[@type='text' or @name='fn']", "targets": [], "value": "ноутбук" },
         { "id": "c63", "command": "click", "target": "xpath=//input[@type='submit' or @type='button']", "targets": [], "value": "" },
+        { "id": "p5", "command": "pause", "target": "2000", "targets": [], "value": "" },
         { "id": "c64", "command": "assertElementNotPresent", "target": "xpath=//h1[contains(text(), 'Холодильник') or contains(text(), 'холодильник')]", "targets": [], "value": "" }
       ]
     }
